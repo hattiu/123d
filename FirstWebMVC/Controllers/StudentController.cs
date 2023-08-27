@@ -25,7 +25,9 @@ namespace FirstWebMVC.Controllers
         // GET: Student
         public async Task<IActionResult> Index()
         {
-            
+            //Lấy ra mã mới nhất
+            var stdID = _context.Student.OrderByDescending(m => m.StudentID).FirstOrDefault().StudentID;
+            ViewBag.maSv = stdID;
               return _context.Student != null ? 
                           View(await _context.Student.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Student'  is null.");
@@ -52,11 +54,10 @@ namespace FirstWebMVC.Controllers
         // GET: Student/Create
         public IActionResult Create()
         {
-            
+            //sinh mã tự động
             var stdID = _context.Student.OrderByDescending(m => m.StudentID).FirstOrDefault().StudentID;
-            
             var newID = strPro.AutoGenerateCode(stdID);
-            ViewBag.maSV = stdID;
+            ViewBag.maSV = newID;
             return View();
         }
 

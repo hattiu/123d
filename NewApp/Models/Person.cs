@@ -23,6 +23,7 @@ namespace NewApp.Models
 
         public void HienThi()
         {
+           
             System.Console.WriteLine("{0} - {1} -{2} tuoi",Name, Address,Age);
         }
 
